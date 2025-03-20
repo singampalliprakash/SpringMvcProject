@@ -1,0 +1,61 @@
+package com.sathya.mvc.service;
+
+import java.time.LocalDateTime; 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.sathya.mvc.entity.ProductEntity;
+import com.sathya.mvc.model.ProductModel;
+import com.sathya.mvc.repository.ProductRepository;
+
+@Service
+public class ProductService 
+{
+	@Autowired
+	ProductRepository productRepository;
+	
+	public void saveProductData(ProductModel productmodel) 
+	{
+		double price=productmodel.getPrice();
+		double taxamount= price*0.28;
+		
+		ProductEntity productEntity=new ProductEntity();
+		
+		productEntity.setName(productmodel.getName());
+		productEntity.setPrice(productmodel.getPrice());
+		productEntity.setTaxamount(taxamount);
+		productEntity.setCreatedby(System.getProperty("username"));
+		productEntity.setCreatedAt(LocalDateTime.now());
+		 	
+		productRepository.save(productEntity);
+	}
+
+	public List<ProductEntity> getAllProducts() {
+		List<ProductEntity> products=productRepository.findAll();
+		return products;
+	}
+
+	public ProductEntity getProduct(Long id) {
+		ProductEntity product=productRepository.findById(id).get();
+		return product;
+	}
+
+	public void deleteProductById(Long id) {
+		productRepository.deleteById(id);
+		
+	}
+	
+	  public ProductModel getEditProduct(Long id) 
+	  { ProductEntity
+	  productEntity=productRepository.findById(id).get(); ProductModel
+	  productModel=new ProductModel();
+	  productModel.setName(productEntity.getName());
+	  productModel.setPrice(productEntity.getPrice());
+	  productModel.setQuantity(productEntity.getQuantity());
+	  productModel.setMadein(productEntity.getMadein());
+	  productModel.setBrand(productEntity.getBrand()); return productModel;
+	  
+	  }
+	 }
