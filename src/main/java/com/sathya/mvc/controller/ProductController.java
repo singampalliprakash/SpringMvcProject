@@ -15,6 +15,7 @@ import com.sathya.mvc.service.ProductService;
 
 
 
+
 @Controller
 public class ProductController{
 	  @Autowired
@@ -80,7 +81,13 @@ public class ProductController{
 				  ProductModel productModel=productService.getEditProduct(id);
 			  
 			    model.addAttribute("productModel",productModel); 
-			    return "editProduct"; }
+			    return "editProduct";
+			    }
+			  @GetMapping("/hi")
+			  public String byeBye() {
+				return "bye";
+				  
+			  }
 			 
 		  
 		  
