@@ -12,8 +12,11 @@
                     <th>ID</th> 
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Description</th>
-					<th>Description1</th>
+					<th>quantity</th>
+					<th>brand</th>
+					<th>madein</th>
+                    <th>Deletecolumn</th>
+					<th>Editcolumn</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +24,9 @@
                     <td th:text="${product.id}"></td> 
                     <td th:text="${product.name}"></td>
                     <td th:text="${product.price}"></td>
+					<td th:text="${product.quantity}"></td>
+					<td th:text="${product.brand}"></td>
+					<td th:text="${product.madein}"></td>
                     <td>
                         <!-- Delete Product -->
                         <form th:action="@{/deleteProduct/{id}(id=${product.id})}"
@@ -30,10 +36,10 @@
                     </td>
 					<td>
 					         
-					                        <form th:action="@{/editProduct/{id}(id=${product.id})}">
-					                            <button type="submit">edit</button>
-					                        </form>
-					                    </td>
+					     <form th:action="@{/editProduct/{id}(id=${product.id})}">
+					                <button type="submit">edit</button>
+					      </form>
+					      </td>
                 </tr>
             </tbody>
         </table>

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.sathya.mvc.entity.ProductEntity;
 import com.sathya.mvc.model.ProductModel;
 import com.sathya.mvc.service.ProductService;
+
+import jakarta.validation.Valid;
 
 
 
@@ -38,16 +41,20 @@ public class ProductController{
 		  @GetMapping("/productform") 
 		  public String getform(Model model) 
 		  { 
-			  ProductModel product=new ProductModel(); 
-			  product.setPrice(18000);
+			  ProductModel product=new ProductModel();
+			  product.setPrice(13455.335);
 			  model.addAttribute("product", product);
 			  return "add-product"; 
 			  }
 		  
 		  @PostMapping("/product/saveproduct")
-		  public String saveProductData(@ModelAttribute ProductModel productmodel) 
+		  public String saveProductData(@Valid @ModelAttribute("product") ProductModel productmodel,BindingResult bindingResult) 
 		  {
-			productService.saveProductData(productmodel);
+			  if(bindingResult.hasErrors())
+			  {
+				  return "add-product";
+			  }
+			  productService.saveProductData(productmodel);
 		  	return "hello";
 		  }
 		  
@@ -58,9 +65,7 @@ public class ProductController{
 			  model.addAttribute("products", products);
 			  
 			return "product-list";
-			  
 		   }
-		  
 		  
 		  @GetMapping("/getProduct/{id}")
 		  public String getMethodName(@PathVariable Long id,Model model) {
@@ -73,8 +78,6 @@ public class ProductController{
 		      productService.deleteProductById(id);
 		      return "redirect:/getAllProducts";
 		  }
-
-			
 			  @GetMapping("/editProduct/{id}")
 			  public String editProductById(@PathVariable Long id,Model model)
 			  { 
@@ -89,12 +92,4 @@ public class ProductController{
 				  
 			  }
 			 
-		  
-		  
-		  
-		  
-		  
-		 
-	
-
 }

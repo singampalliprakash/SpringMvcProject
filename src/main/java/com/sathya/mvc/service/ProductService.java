@@ -25,6 +25,9 @@ public class ProductService
 		
 		productEntity.setName(productmodel.getName());
 		productEntity.setPrice(productmodel.getPrice());
+		productEntity.setQuantity(productmodel.getQuantity());
+		productEntity.setBrand(productmodel.getBrand());
+		productEntity.setMadein(productmodel.getMadein());
 		productEntity.setTaxamount(taxamount);
 		productEntity.setCreatedby(System.getProperty("username"));
 		productEntity.setCreatedAt(LocalDateTime.now());
@@ -55,7 +58,8 @@ public class ProductService
 	  productModel.setPrice(productEntity.getPrice());
 	  productModel.setQuantity(productEntity.getQuantity());
 	  productModel.setMadein(productEntity.getMadein());
-	  productModel.setBrand(productEntity.getBrand()); return productModel;
+	  productModel.setBrand(productEntity.getBrand());
+	  return productModel;
 	  
 	  }
 	 }
