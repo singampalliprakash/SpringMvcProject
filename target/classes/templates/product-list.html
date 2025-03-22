@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #c82333;
+        }
+
+        .edit-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Product Details</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th> 
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Brand</th>
+                <th>Made In</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td> 
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.brand}"></td>
+                <td th:text="${product.madein}"></td>
+                <td>
+                    <!-- Delete Product -->
+                    <form th:action="@{/deleteProduct/{id}(id=${product.id})}"
+                          onsubmit="return confirm('Are you sure you want to delete this product?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <!-- Edit Product -->
+                    <form th:action="@{/editProduct/{id}(id=${product.id})}">
+                        <button type="submit" class="edit-btn">Edit</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
