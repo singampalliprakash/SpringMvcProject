@@ -1,6 +1,10 @@
 package com.sathya.mvc.entity;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;  
+=======
+import java.time.LocalDateTime; 
+>>>>>>> a6786815b5313ca26a241520e49137625c14d96f
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
