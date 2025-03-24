@@ -1,10 +1,6 @@
 package com.sathya.mvc.model;
 
-<<<<<<< HEAD
-import jakarta.validation.constraints.Min;   
-=======
-import jakarta.validation.constraints.Min;
->>>>>>> a6786815b5313ca26a241520e49137625c14d96f
+import jakarta.validation.constraints.Min;    
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;

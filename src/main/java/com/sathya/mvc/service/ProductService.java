@@ -1,10 +1,6 @@
 package com.sathya.mvc.service;
 
-<<<<<<< HEAD
-import java.time.LocalDateTime;    
-=======
-import java.time.LocalDateTime;  
->>>>>>> a6786815b5313ca26a241520e49137625c14d96f
+import java.time.LocalDateTime;     
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +15,11 @@ public class ProductService
 {
 	@Autowired
 	ProductRepository productRepository;
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> a6786815b5313ca26a241520e49137625c14d96f
 	public void saveProductData(ProductModel productmodel) 
 	{
 		double price=productmodel.getPrice();
 		double taxamount= price*0.28;
-<<<<<<< HEAD
-
-		ProductEntity productEntity=new ProductEntity();
-
-=======
-		
-		ProductEntity productEntity=new ProductEntity();
-		
->>>>>>> a6786815b5313ca26a241520e49137625c14d96f
+		ProductEntity productEntity=new ProductEntity();		
 		productEntity.setName(productmodel.getName());
 		productEntity.setPrice(productmodel.getPrice());
 		productEntity.setQuantity(productmodel.getQuantity());
@@ -45,11 +28,7 @@ public class ProductService
 		productEntity.setTaxamount(taxamount);
 		productEntity.setCreatedby(System.getProperty("username"));
 		productEntity.setCreatedAt(LocalDateTime.now());
-<<<<<<< HEAD
 
-=======
-		 	
->>>>>>> a6786815b5313ca26a241520e49137625c14d96f
 		productRepository.save(productEntity);
 	}
 
@@ -65,11 +44,10 @@ public class ProductService
 
 	public void deleteProductById(Long id) {
 		productRepository.deleteById(id);
-<<<<<<< HEAD
 
 	}
 
-	public ProductEntity getEditProduct(Long id) 
+	public ProductEntity getEditProduct1(Long id) 
 	{ 
 		ProductEntity productEntity=productRepository.findById(id).get(); 
 
@@ -79,7 +57,6 @@ public class ProductService
 
 	public void updateProduct(long id, ProductModel productModel) {
 		ProductEntity productEntity = productRepository.findById(id).get();
-
 		productEntity.setName(productModel.getName());
 		productEntity.setBrand(productModel.getBrand());
 		productEntity.setPrice(productModel.getPrice());
@@ -88,21 +65,4 @@ public class ProductService
 		productRepository.save(productEntity);
 	}
 }
-=======
-		
-	}
-	
-	  public ProductModel getEditProduct(Long id) 
-	  { ProductEntity
-	  productEntity=productRepository.findById(id).get(); ProductModel
-	  productModel=new ProductModel();
-	  productModel.setName(productEntity.getName());
-	  productModel.setPrice(productEntity.getPrice());
-	  productModel.setQuantity(productEntity.getQuantity());
-	  productModel.setMadein(productEntity.getMadein());
-	  productModel.setBrand(productEntity.getBrand());
-	  return productModel;
-	  
-	  }
-	 }
->>>>>>> a6786815b5313ca26a241520e49137625c14d96f
+
